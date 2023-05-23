@@ -13,17 +13,15 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
-app.use(function(req, res, next) {
-    console.log('Hello from Middleware');
-    next(); // without this function call req-res cycle will be stuck
+app.use((req, res, next) => {
+  next(); // without this function call req-res cycle will be stuck
 });
 
-app.use(function(req, res, next) {
-    console.log('Hello from Middleware');
-    req.requestTime = new Date().getTime();
-    next(); // without this function call req-res cycle will be stuck
+app.use((req, res, next) => {
+  //   console.log('Hello from Middleware');
+  req.requestTime = new Date().getTime();
+  next(); // without this function call req-res cycle will be stuck
 });
-
 
 // app.get('/', (req, res) => {
 //     // res.status(200).send('Hello World!');
@@ -40,7 +38,6 @@ app.use(function(req, res, next) {
 
 //ROUTE HANDLERS
 
-
 //ROUTES
 
 // app.get('/api/v1/tours/:id', getTour)
@@ -53,12 +50,8 @@ app.use(function(req, res, next) {
 //     res.status(204).json({data: null});
 // })
 
-
-
 //Mounting routes
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-
 module.exports = app;
-

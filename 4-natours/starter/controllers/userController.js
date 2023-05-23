@@ -1,8 +1,7 @@
-exports.checkUser = (req, res) => {
-    if (!req.name) return res.status(404).json({ message: "Error"});
-    next();
-
-}
+exports.checkUser = (req, res, next) => {
+  if (!req.name) return res.status(404).json({ message: 'Error' });
+  next();
+};
 
 exports.getAllUsers = (req, res) => {
     res.status(500).json({data: "Not created"});
