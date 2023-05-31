@@ -182,7 +182,7 @@ exports.getMonthlyPlan = async (req, res) => {
         }
       },
       {
-        $sort: { numTourStarts: -1 }
+        $sort: { numTourStarts: -1 } // descending
       },
       {
         $limit: 12
